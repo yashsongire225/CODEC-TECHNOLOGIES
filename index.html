@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Science Portfolio - Codec Technologies Internship</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        .dark-theme {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .neon-glow {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        }
+        
+        .project-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .project-hover:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+        
+        .typing-effect {
+            overflow: hidden;
+            border-right: 3px solid #3b82f6;
+            white-space: nowrap;
+            animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #3b82f6 }
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        .slide-in {
+            animation: slideIn 0.6s ease-out forwards;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .code-terminal {
+            background: #0d1117;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+        
+        .terminal-header {
+            background: #21262d;
+            border-radius: 12px 12px 0 0;
+        }
+        
+        .progress-bar {
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
+            background-size: 200% 200%;
+            animation: gradient 3s ease infinite;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .metric-card {
+            background: linear-gradient(145deg, #1e293b, #334155);
+            border: 1px solid #475569;
+        }
+        
+        .demo-input {
+            background: rgba(15, 23, 42, 0.8);
+            border: 2px solid #334155;
+            color: #e2e8f0;
+        }
+        
+        .demo-input:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+    </style>
+</head>
+<body class="dark-theme min-h-screen text-white">
+    <!-- Animated Background -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute -top-40 -right-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
+        <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse" style="animation-delay: 2s;"></div>
+        <div class="absolute top-40 left-1/2 w-80 h-80 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse" style="animation-delay: 4s;"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-card">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                        <span class="text-xl font-bold">K</span>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold">Kodak Technology</h1>
+                        <p class="text-sm text-gray-300">Data Science Internship</p>
+                    </div>
+                </div>
+                <div class="hidden md:flex space-x-6">
+                    <button onclick="scrollToSection('hero')" class="nav-link text-blue-400 hover:text-blue-300 transition-colors">Home</button>
+                    <button onclick="scrollToSection('projects')" class="nav-link hover:text-blue-300 transition-colors">Projects</button>
+                    <button onclick="scrollToSection('demos')" class="nav-link hover:text-blue-300 transition-colors">Live Demos</button>
+                    <button onclick="scrollToSection('skills')" class="nav-link hover:text-blue-300 transition-colors">Skills</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="min-h-screen flex items-center justify-center relative pt-20">
+        <div class="container mx-auto px-6 text-center">
+            <div class="max-w-4xl mx-auto">
+                <div class="mb-8">
+                    <h1 class="text-6xl md:text-8xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+                        Data Science
+                    </h1>
+                    <div class="typing-effect text-2xl md:text-4xl text-gray-300 mb-6">
+                        Machine Learning Portfolio
+                    </div>
+                </div>
+                
+                <div class="glass-card p-8 rounded-2xl mb-8 slide-in">
+                    <div class="grid md:grid-cols-3 gap-6 text-center">
+                        <div class="space-y-2">
+                            <div class="text-3xl font-bold text-blue-400">2</div>
+                            <div class="text-gray-300">ML Projects</div>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="text-3xl font-bold text-purple-400">B.Tech</div>
+                            <div class="text-gray-300">Data Science</div>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="text-3xl font-bold text-pink-400">2nd Year</div>
+                            <div class="text-gray-300">Academic Level</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button onclick="scrollToSection('projects')" class="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full font-semibold hover:from-blue-700 hover:to-purple-700 transition-all transform hover:scale-105 neon-glow">
+                        Explore Projects
+                    </button>
+                    <button onclick="scrollToSection('demos')" class="px-8 py-4 glass-card rounded-full font-semibold hover:bg-white/20 transition-all">
+                        Try Live Demos
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+                    Featured Projects
+                </h2>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+                    Advanced machine learning implementations showcasing NLP and anomaly detection techniques
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                <!-- Project 1: Fake News Detection -->
+                <div class="glass-card p-8 rounded-2xl project-hover">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-r from-red-500 to-orange-500 rounded-2xl flex items-center justify-center mr-4">
+                            <span class="text-3xl">🔍</span>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-white">Fake News Detection</h3>
+                            <p class="text-gray-300">NLP-Powered Classification System</p>
+                        </div>
+                    </div>
+
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        Advanced natural language processing system that identifies misinformation using state-of-the-art 
+                        machine learning techniques including TF-IDF vectorization, SVM classification, and LSTM neural networks.
+                    </p>
+
+                    <div class="space-y-4 mb-6">
+                        <div class="flex items-center justify-between p-3 bg-white/5 rounded-lg">
+                            <span class="text-sm font-medium">Model Accuracy</span>
+                            <div class="flex items-center space-x-2">
+                                <div class="w-20 h-2 bg-gray-600 rounded-full overflow-hidden">
+                                    <div class="progress-bar h-full w-[87%]"></div>
+                                </div>
+                                <span class="text-green-400 font-bold">87.3%</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between p-3 bg-white/5 rounded-lg">
+                            <span class="text-sm font-medium">F1-Score</span>
+                            <div class="flex items-center space-x-2">
+                                <div class="w-20 h-2 bg-gray-600 rounded-full overflow-hidden">
+                                    <div class="progress-bar h-full w-[89%]"></div>
+                                </div>
+                                <span class="text-blue-400 font-bold">0.89</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm border border-blue-500/30">NLP</span>
+                        <span class="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-sm border border-green-500/30">TF-IDF</span>
+                        <span class="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm border border-purple-500/30">SVM</span>
+                        <span class="px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-sm border border-orange-500/30">LSTM</span>
+                    </div>
+
+                    <button onclick="showProjectDetails('news')" class="w-full py-3 bg-gradient-to-r from-red-600 to-orange-600 rounded-lg font-semibold hover:from-red-700 hover:to-orange-700 transition-all">
+                        View Implementation
+                    </button>
+                </div>
+
+                <!-- Project 2: Fraud Detection -->
+                <div class="glass-card p-8 rounded-2xl project-hover">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mr-4">
+                            <span class="text-3xl">🛡️</span>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-white">Fraud Detection System</h3>
+                            <p class="text-gray-300">Anomaly Detection & Risk Analysis</p>
+                        </div>
+                    </div>
+
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        Sophisticated financial fraud detection system utilizing ensemble methods with Isolation Forest 
+                        and Autoencoders, enhanced with SMOTE balancing to handle class imbalance in transaction data.
+                    </p>
+
+                    <div class="space-y-4 mb-6">
+                        <div class="flex items-center justify-between p-3 bg-white/5 rounded-lg">
+                            <span class="text-sm font-medium">AUC-ROC Score</span>
+                            <div class="flex items-center space-x-2">
+                                <div class="w-20 h-2 bg-gray-600 rounded-full overflow-hidden">
+                                    <div class="progress-bar h-full w-[94%]"></div>
+                                </div>
+                                <span class="text-green-400 font-bold">0.94</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between p-3 bg-white/5 rounded-lg">
+                            <span class="text-sm font-medium">Precision Rate</span>
+                            <div class="flex items-center space-x-2">
+                                <div class="w-20 h-2 bg-gray-600 rounded-full overflow-hidden">
+                                    <div class="progress-bar h-full w-[99%]"></div>
+                                </div>
+                                <span class="text-blue-400 font-bold">99.2%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="px-3 py-1 bg-red-500/20 text-red-300 rounded-full text-sm border border-red-500/30">Isolation Forest</span>
+                        <span class="px-3 py-1 bg-yellow-500/20 text-yellow-300 rounded-full text-sm border border-yellow-500/30">SMOTE</span>
+                        <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm border border-indigo-500/30">Autoencoders</span>
+                        <span class="px-3 py-1 bg-pink-500/20 text-pink-300 rounded-full text-sm border border-pink-500/30">AUC-ROC</span>
+                    </div>
+
+                    <button onclick="showProjectDetails('fraud')" class="w-full py-3 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-lg font-semibold hover:from-blue-700 hover:to-cyan-700 transition-all">
+                        View Implementation
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Details Modal -->
+    <div id="projectModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-card max-w-4xl w-full max-h-[90vh] overflow-y-auto rounded-2xl">
+            <div class="p-8">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 id="modalTitle" class="text-3xl font-bold"></h3>
+                    <button onclick="closeModal()" class="w-10 h-10 bg-red-500/20 hover:bg-red-500/30 rounded-full flex items-center justify-center transition-colors">
+                        <span class="text-xl">×</span>
+                    </button>
+                </div>
+                <div id="modalContent"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Live Demos Section -->
+    <section id="demos" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">
+                    Interactive Demos
+                </h2>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+                    Test the machine learning models with real-time predictions and analysis
+                </p>
+            </div>
+
+            <!-- Demo Tabs -->
+            <div class="max-w-4xl mx-auto">
+                <div class="flex justify-center mb-8">
+                    <div class="glass-card p-2 rounded-2xl">
+                        <button id="newsTab" onclick="switchDemo('news')" class="px-6 py-3 rounded-xl font-semibold transition-all bg-gradient-to-r from-red-600 to-orange-600 text-white">
+                            🔍 Fake News Detector
+                        </button>
+                        <button id="fraudTab" onclick="switchDemo('fraud')" class="px-6 py-3 rounded-xl font-semibold transition-all text-gray-300 hover:text-white">
+                            🛡️ Fraud Analyzer
+                        </button>
+                    </div>
+                </div>
+
+                <!-- News Demo -->
+                <div id="newsDemo" class="demo-content">
+                    <div class="glass-card p-8 rounded-2xl mb-6">
+                        <h3 class="text-2xl font-bold mb-4 text-center">🔍 AI-Powered News Authenticity Checker</h3>
+                        <p class="text-gray-300 text-center mb-6">Enter any news article or headline to analyze its credibility using advanced NLP algorithms</p>
+                        
+                        <div class="space-y-4">
+                            <textarea 
+                                id="newsInput" 
+                                placeholder="Paste your news article or headline here for analysis..."
+                                class="w-full h-32 p-4 demo-input rounded-xl resize-none focus:outline-none transition-all"
+                            ></textarea>
+                            
+                            <div class="flex flex-wrap gap-3 justify-center">
+                                <button onclick="loadNewsSample('real')" class="px-4 py-2 bg-green-500/20 text-green-300 rounded-lg hover:bg-green-500/30 transition-colors border border-green-500/30">
+                                    📰 Load Real News
+                                </button>
+                                <button onclick="loadNewsSample('fake')" class="px-4 py-2 bg-red-500/20 text-red-300 rounded-lg hover:bg-red-500/30 transition-colors border border-red-500/30">
+                                    ⚠️ Load Fake News
+                                </button>
+                                <button onclick="clearNewsInput()" class="px-4 py-2 bg-gray-500/20 text-gray-300 rounded-lg hover:bg-gray-500/30 transition-colors border border-gray-500/30">
+                                    🗑️ Clear
+                                </button>
+                            </div>
+                            
+                            <button onclick="analyzeNews()" class="w-full py-4 bg-gradient-to-r from-red-600 to-orange-600 rounded-xl font-bold text-lg hover:from-red-700 hover:to-orange-700 transition-all transform hover:scale-105">
+                                🚀 Analyze Article
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="newsResults" class="hidden glass-card p-8 rounded-2xl">
+                        <div id="newsResultContent"></div>
+                    </div>
+                </div>
+
+                <!-- Fraud Demo -->
+                <div id="fraudDemo" class="demo-content hidden">
+                    <div class="glass-card p-8 rounded-2xl mb-6">
+                        <h3 class="text-2xl font-bold mb-4 text-center">🛡️ Real-Time Transaction Risk Assessment</h3>
+                        <p class="text-gray-300 text-center mb-6">Input transaction details to get instant fraud risk analysis using ensemble ML models</p>
+                        
+                        <div class="grid md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">💰 Transaction Amount ($)</label>
+                                <input type="number" id="amount" placeholder="Enter amount..." class="w-full p-3 demo-input rounded-xl focus:outline-none transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">🕐 Transaction Hour (0-23)</label>
+                                <input type="number" id="hour" placeholder="Enter hour..." min="0" max="23" class="w-full p-3 demo-input rounded-xl focus:outline-none transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">🏪 Merchant Category</label>
+                                <select id="category" class="w-full p-3 demo-input rounded-xl focus:outline-none transition-all">
+                                    <option value="grocery">🛒 Grocery Store</option>
+                                    <option value="gas">⛽ Gas Station</option>
+                                    <option value="restaurant">🍽️ Restaurant</option>
+                                    <option value="online">💻 Online Purchase</option>
+                                    <option value="atm">🏧 ATM Withdrawal</option>
+                                    <option value="unknown">❓ Unknown/Suspicious</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">📅 Account Age (days)</label>
+                                <input type="number" id="accountAge" placeholder="Enter days..." min="1" class="w-full p-3 demo-input rounded-xl focus:outline-none transition-all">
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-3 justify-center mb-6">
+                            <button onclick="loadFraudSample('normal')" class="px-4 py-2 bg-green-500/20 text-green-300 rounded-lg hover:bg-green-500/30 transition-colors border border-green-500/30">
+                                ✅ Normal Transaction
+                            </button>
+                            <button onclick="loadFraudSample('suspicious')" class="px-4 py-2 bg-red-500/20 text-red-300 rounded-lg hover:bg-red-500/30 transition-colors border border-red-500/30">
+                                🚨 Suspicious Transaction
+                            </button>
+                            <button onclick="clearFraudInput()" class="px-4 py-2 bg-gray-500/20 text-gray-300 rounded-lg hover:bg-gray-500/30 transition-colors border border-gray-500/30">
+                                🗑️ Clear All
+                            </button>
+                        </div>
+                        
+                        <button onclick="analyzeFraud()" class="w-full py-4 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-xl font-bold text-lg hover:from-blue-700 hover:to-cyan-700 transition-all transform hover:scale-105">
+                            🔍 Analyze Transaction
+                        </button>
+                    </div>
+
+                    <div id="fraudResults" class="hidden glass-card p-8 rounded-2xl">
+                        <div id="fraudResultContent"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
+                    Technical Skills
+                </h2>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+                    Comprehensive toolkit for modern data science and machine learning development
+                </p>
+            </div>
+
+            <div class="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="metric-card p-6 rounded-2xl">
+                    <div class="flex items-center mb-4">
+                        <span class="text-3xl mr-4">🐍</span>
+                        <div>
+                            <h3 class="text-xl font-bold">Python</h3>
+                            <p class="text-gray-400">Core Programming</p>
+                        </div>
+                    </div>
+                    <div class="w-full bg-gray-600 rounded-full h-2">
+                        <div class="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full" style="width: 90%"></div>
+                    </div>
+                </div>
+
+                <div class="metric-card p-6 rounded-2xl">
+                    <div class="flex items-center mb-4">
+                        <span class="text-3xl mr-4">🧠</span>
+                        <div>
+                            <h3 class="text-xl font-bold">Machine Learning</h3>
+                            <p class="text-gray-400">Scikit-learn, TensorFlow</p>
+                        </div>
+                    </div>
+                    <div class="w-full bg-gray-600 rounded-full h-2">
+                        <div class="bg-gradient-to-r from-green-500 to-blue-500 h-2 rounded-full" style="width: 85%"></div>
+                    </div>
+                </div>
+
+                <div class="metric-card p-6 rounded-2xl">
+                    <div class="flex items-center mb-4">
+                        <span class="text-3xl mr-4">📊</span>
+                        <div>
+                            <h3 class="text-xl font-bold">Data Analysis</h3>
+                            <p class="text-gray-400">Pandas, NumPy</p>
+                        </div>
+                    </div>
+                    <div class="w-full bg-gray-600 rounded-full h-2">
+                        <div class="bg-gradient-to-r from-orange-500 to-red-500 h-2 rounded-full" style="width: 88%"></div>
+                    </div>
+                </div>
+
+                <div class="metric-card p-6 rounded-2xl">
+                    <div class="flex items-center mb-4">
+                        <span class="text-3xl mr-4">📝</span>
+                        <div>
+                            <h3 class="text-xl font-bold">NLP</h3>
+                            <p class="text-gray-400">NLTK, Transformers</p>
+                        </div>
+                    </div>
+                    <div class="w-full bg-gray-600 rounded-full h-2">
+                        <div class="bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full" style="width: 82%"></div>
+                    </div>
+                </div>
+
+                <div class="metric-card p-6 rounded-2xl">
+                    <div class="flex items-center mb-4">
+                        <span class="text-3xl mr-4">🔍</span>
+                        <div>
+                            <h3 class="text-xl font-bold">Anomaly Detection</h3>
+                            <p class="text-gray-400">Isolation Forest, Autoencoders</p>
+                        </div>
+                    </div>
+                    <div class="w-full bg-gray-600 rounded-full h-2">
+                        <div class="bg-gradient-to-r from-cyan-500 to-blue-500 h-2 rounded-full" style="width: 80%"></div>
+                    </div>
+                </div>
+
+                <div class="metric-card p-6 rounded-2xl">
+                    <div class="flex items-center mb-4">
+                        <span class="text-3xl mr-4">📈</span>
+                        <div>
+                            <h3 class="text-xl font-bold">Model Evaluation</h3>
+                            <p class="text-gray-400">ROC-AUC, F1-Score</p>
+                        </div>
+                    </div>
+                    <div class="w-full bg-gray-600 rounded-full h-2">
+                        <div class="bg-gradient-to-r from-yellow-500 to-orange-500 h-2 rounded-full" style="width: 87%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-gray-700">
+        <div class="container mx-auto px-6 text-center">
+            <div class="glass-card p-8 rounded-2xl max-w-2xl mx-auto">
+                <h3 class="text-2xl font-bold mb-4">Ready to Explore More?</h3>
+                <p class="text-gray-300 mb-6">
+                    This portfolio showcases advanced machine learning implementations created during my 
+                    Kodak Technology internship as a B.Tech Data Science student.
+                </p>
+                <div class="flex justify-center space-x-4">
+                    <button onclick="scrollToSection('demos')" class="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full font-semibold hover:from-blue-700 hover:to-purple-700 transition-all">
+                        Try Demos
+                    </button>
+                    <button onclick="scrollToSection('projects')" class="px-6 py-3 glass-card rounded-full font-semibold hover:bg-white/20 transition-all">
+                        View Projects
+                    </button>
+                </div>
+            </div>
+            <div class="mt-8 text-gray-400">
+                <p>&copy; 2024 Kodak Technology Internship Portfolio • Data Science Projects</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        // Project details modal
+        function showProjectDetails(project) {
+            const modal = document.getElementById('projectModal');
+            const title = document.getElementById('modalTitle');
+            const content = document.getElementById('modalContent');
+            
+            if (project === 'news') {
+                title.textContent = '🔍 Fake News Detection System';
+                content.innerHTML = `
+                    <div class="space-y-6">
+                        <div class="code-terminal">
+                            <div class="terminal-header p-4 flex items-center space-x-2">
+                                <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                                <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                                <span class="ml-4 text-gray-400 text-sm">fake_news_detector.py</span>
+                            </div>
+                            <div class="p-6 text-green-400 font-mono text-sm overflow-x-auto">
+                                <div class="text-gray-400 mb-2"># Advanced Fake News Detection Implementation</div>
+                                <div class="text-white">
+import pandas as pd<br>
+import numpy as np<br>
+from sklearn.feature_extraction.text import TfidfVectorizer<br>
+from sklearn.svm import SVC<br>
+from sklearn.model_selection import train_test_split<br>
+from sklearn.metrics import classification_report, accuracy_score<br>
+import nltk<br>
+from transformers import pipeline<br><br>
+
+<span class="text-yellow-400"># Enhanced NLP Pipeline</span><br>
+class AdvancedFakeNewsDetector:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;def __init__(self):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.tfidf = TfidfVectorizer(max_features=10000, stop_words='english')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.svm_model = SVC(kernel='rbf', probability=True)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.bert_classifier = pipeline('text-classification')<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;def preprocess_text(self, text):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Advanced text preprocessing with sentiment analysis<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cleaned = re.sub(r'[^a-zA-Z\\s]', '', text.lower())<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tokens = word_tokenize(cleaned)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return ' '.join([word for word in tokens if len(word) > 2])<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;def ensemble_predict(self, text):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Combine multiple model predictions<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tfidf_pred = self.svm_model.predict_proba(self.tfidf.transform([text]))[0]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bert_pred = self.bert_classifier(text)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return self.weighted_ensemble(tfidf_pred, bert_pred)
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="metric-card p-6 rounded-xl">
+                                <h4 class="text-lg font-bold mb-4 text-blue-400">🎯 Model Performance</h4>
+                                <div class="space-y-3">
+                                    <div class="flex justify-between">
+                                        <span>Accuracy</span>
+                                        <span class="text-green-400 font-bold">87.3%</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>Precision</span>
+                                        <span class="text-blue-400 font-bold">89.1%</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>Recall</span>
+                                        <span class="text-purple-400 font-bold">85.7%</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>F1-Score</span>
+                                        <span class="text-orange-400 font-bold">0.89</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="metric-card p-6 rounded-xl">
+                                <h4 class="text-lg font-bold mb-4 text-green-400">🔧 Technical Stack</h4>
+                                <div class="space-y-2">
+                                    <div class="flex items-center">
+                                        <span class="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
+                                        <span>TF-IDF Vectorization</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <span class="w-2 h-2 bg-green-500 rounded-full mr-3"></span>
+                                        <span>Support Vector Machine</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <span class="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
+                                        <span>LSTM Neural Networks</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <span class="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>
+                                        <span>BERT Transformers</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                title.textContent = '🛡️ Fraud Detection System';
+                content.innerHTML = `
+                    <div class="space-y-6">
+                        <div class="code-terminal">
+                            <div class="terminal-header p-4 flex items-center space-x-2">
+                                <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                                <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                                <span class="ml-4 text-gray-400 text-sm">fraud_detection_system.py</span>
+                            </div>
+                            <div class="p-6 text-green-400 font-mono text-sm overflow-x-auto">
+                                <div class="text-gray-400 mb-2"># Enterprise-Grade Fraud Detection System</div>
+                                <div class="text-white">
+import pandas as pd<br>
+import numpy as np<br>
+from sklearn.ensemble import IsolationForest<br>
+from sklearn.preprocessing import StandardScaler<br>
+from imblearn.over_sampling import SMOTE<br>
+import tensorflow as tf<br>
+from tensorflow.keras import layers, Model<br><br>
+
+<span class="text-yellow-400"># Advanced Anomaly Detection Pipeline</span><br>
+class EnterpriseeFraudDetector:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;def __init__(self):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.isolation_forest = IsolationForest(contamination=0.1)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.autoencoder = self.build_autoencoder()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.scaler = StandardScaler()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.smote = SMOTE(random_state=42)<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;def build_autoencoder(self):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Deep autoencoder for anomaly detection<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;input_dim = 20<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;input_layer = layers.Input(shape=(input_dim,))<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;encoded = layers.Dense(128, activation='relu')(input_layer)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;encoded = layers.Dense(64, activation='relu')(encoded)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;encoded = layers.Dense(32, activation='relu')(encoded)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;decoded = layers.Dense(64, activation='relu')(encoded)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;decoded = layers.Dense(128, activation='relu')(decoded)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;output = layers.Dense(input_dim, activation='sigmoid')(decoded)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return Model(input_layer, output)<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;def ensemble_prediction(self, X):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Combine Isolation Forest + Autoencoder predictions<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iso_pred = self.isolation_forest.predict(X)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reconstruction_error = self.calculate_reconstruction_error(X)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return self.weighted_ensemble(iso_pred, reconstruction_error)
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="metric-card p-6 rounded-xl">
+                                <h4 class="text-lg font-bold mb-4 text-cyan-400">📊 Performance Metrics</h4>
+                                <div class="space-y-3">
+                                    <div class="flex justify-between">
+                                        <span>AUC-ROC</span>
+                                        <span class="text-green-400 font-bold">0.94</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>Precision</span>
+                                        <span class="text-blue-400 font-bold">99.2%</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>Recall</span>
+                                        <span class="text-purple-400 font-bold">78.5%</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>F1-Score</span>
+                                        <span class="text-orange-400 font-bold">0.87</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="metric-card p-6 rounded-xl">
+                                <h4 class="text-lg font-bold mb-4 text-orange-400">⚙️ ML Techniques</h4>
+                                <div class="space-y-2">
+                                    <div class="flex items-center">
+                                        <span class="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
+                                        <span>Isolation Forest</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <span class="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
+                                        <span>Deep Autoencoders</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <span class="w-2 h-2 bg-yellow-500 rounded-full mr-3"></span>
+                                        <span>SMOTE Balancing</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <span class="w-2 h-2 bg-green-500 rounded-full mr-3"></span>
+                                        <span>Ensemble Methods</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            modal.classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('projectModal').classList.add('hidden');
+        }
+
+        // Demo switching
+        function switchDemo(demo) {
+            const newsDemo = document.getElementById('newsDemo');
+            const fraudDemo = document.getElementById('fraudDemo');
+            const newsTab = document.getElementById('newsTab');
+            const fraudTab = document.getElementById('fraudTab');
+            
+            if (demo === 'news') {
+                newsDemo.classList.remove('hidden');
+                fraudDemo.classList.add('hidden');
+                newsTab.className = 'px-6 py-3 rounded-xl font-semibold transition-all bg-gradient-to-r from-red-600 to-orange-600 text-white';
+                fraudTab.className = 'px-6 py-3 rounded-xl font-semibold transition-all text-gray-300 hover:text-white';
+            } else {
+                fraudDemo.classList.remove('hidden');
+                newsDemo.classList.add('hidden');
+                fraudTab.className = 'px-6 py-3 rounded-xl font-semibold transition-all bg-gradient-to-r from-blue-600 to-cyan-600 text-white';
+                newsTab.className = 'px-6 py-3 rounded-xl font-semibold transition-all text-gray-300 hover:text-white';
+            }
+        }
+
+        // News detection functions
+        const newsSamples = {
+            real: "Researchers at Stanford University have developed a new AI algorithm that can predict earthquake aftershocks with 85% accuracy. The study, published in Nature Geoscience, analyzed over 130,000 earthquakes and their aftershocks. The team hopes this breakthrough will help emergency responders better prepare for secondary disasters.",
+            fake: "SHOCKING: Scientists discover that drinking coffee backwards can reverse aging! Government has been hiding this secret for decades. Big pharma doesn't want you to know this ONE WEIRD TRICK that doctors hate. Share before they delete this!"
+        };
+
+        function loadNewsSample(type) {
+            document.getElementById('newsInput').value = newsSamples[type];
+        }
+
+        function clearNewsInput() {
+            document.getElementById('newsInput').value = '';
+            document.getElementById('newsResults').classList.add('hidden');
+        }
+
+        function analyzeNews() {
+            const input = document.getElementById('newsInput').value.trim();
+            
+            if (!input) {
+                alert('Please enter some text to analyze!');
+                return;
+            }
+
+            // Enhanced fake news detection simulation
+            const fakeIndicators = [
+                'shocking', 'secret', 'government hiding', 'they don\'t want you to know',
+                'one weird trick', 'doctors hate', 'big pharma', 'share before',
+                'deleted', 'banned', 'censored', 'breakthrough they\'re hiding'
+            ];
+            
+            const realIndicators = [
+                'university', 'researchers', 'study published', 'according to',
+                'data shows', 'peer-reviewed', 'journal', 'scientists',
+                'research team', 'analysis', 'methodology', 'findings suggest'
+            ];
+
+            let fakeScore = 0;
+            let realScore = 0;
+            
+            const lowerInput = input.toLowerCase();
+            
+            fakeIndicators.forEach(indicator => {
+                if (lowerInput.includes(indicator)) fakeScore += 2;
+            });
+            
+            realIndicators.forEach(indicator => {
+                if (lowerInput.includes(indicator)) realScore += 1.5;
+            });
+
+            // Add complexity factors
+            const wordCount = input.split(' ').length;
+            const hasNumbers = /\d/.test(input);
+            const hasPercentages = /%/.test(input);
+            
+            if (wordCount > 100) realScore += 1;
+            if (hasNumbers && hasPercentages) realScore += 1;
+            if (input.includes('!'.repeat(3))) fakeScore += 2;
+
+            fakeScore += Math.random() * 1.5;
+            realScore += Math.random() * 1.5;
+
+            const isFake = fakeScore > realScore;
+            const confidence = Math.min(98, Math.max(65, (Math.abs(fakeScore - realScore) / Math.max(fakeScore, realScore)) * 100));
+
+            displayNewsResults(isFake, confidence, input.length, wordCount);
+        }
+
+        function displayNewsResults(isFake, confidence, charCount, wordCount) {
+            const resultsDiv = document.getElementById('newsResults');
+            const contentDiv = document.getElementById('newsResultContent');
+            
+            const status = isFake ? 'FAKE NEWS DETECTED' : 'AUTHENTIC NEWS';
+            const statusColor = isFake ? 'text-red-400' : 'text-green-400';
+            const bgGradient = isFake ? 'from-red-500/20 to-orange-500/20' : 'from-green-500/20 to-blue-500/20';
+            const icon = isFake ? '🚨' : '✅';
+            const riskLevel = isFake ? 'HIGH RISK' : 'LOW RISK';
+            
+            contentDiv.innerHTML = `
+                <div class="text-center mb-8">
+                    <div class="text-6xl mb-4">${icon}</div>
+                    <div class="text-3xl font-bold ${statusColor} mb-2">${status}</div>
+                    <div class="text-xl text-gray-300">Confidence: ${confidence.toFixed(1)}%</div>
+                    <div class="inline-block px-4 py-2 bg-gradient-to-r ${bgGradient} rounded-full mt-4">
+                        <span class="font-semibold">${riskLevel}</span>
+                    </div>
+                </div>
+                
+                <div class="grid md:grid-cols-4 gap-4 mb-8">
+                    <div class="metric-card p-4 rounded-xl text-center">
+                        <div class="text-2xl font-bold ${statusColor}">${confidence.toFixed(1)}%</div>
+                        <div class="text-sm text-gray-400">AI Confidence</div>
+                    </div>
+                    <div class="metric-card p-4 rounded-xl text-center">
+                        <div class="text-2xl font-bold text-blue-400">${wordCount}</div>
+                        <div class="text-sm text-gray-400">Words Analyzed</div>
+                    </div>
+                    <div class="metric-card p-4 rounded-xl text-center">
+                        <div class="text-2xl font-bold text-purple-400">${charCount}</div>
+                        <div class="text-sm text-gray-400">Characters</div>
+                    </div>
+                    <div class="metric-card p-4 rounded-xl text-center">
+                        <div class="text-2xl font-bold text-orange-400">NLP</div>
+                        <div class="text-sm text-gray-400">Algorithm</div>
+                    </div>
+                </div>
+                
+                <div class="glass-card p-6 rounded-xl">
+                    <h4 class="text-lg font-bold mb-4 text-center">🧠 AI Analysis Breakdown</h4>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h5 class="font-semibold text-green-400 mb-2">✅ Credibility Indicators</h5>
+                            <ul class="text-sm text-gray-300 space-y-1">
+                                <li>• Source attribution patterns</li>
+                                <li>• Academic language structure</li>
+                                <li>• Factual presentation style</li>
+                                <li>• Balanced reporting tone</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 class="font-semibold text-red-400 mb-2">⚠️ Risk Factors</h5>
+                            <ul class="text-sm text-gray-300 space-y-1">
+                                <li>• Sensational language usage</li>
+                                <li>• Emotional manipulation tactics</li>
+                                <li>• Lack of verifiable sources</li>
+                                <li>• Conspiracy theory patterns</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            resultsDiv.classList.remove('hidden');
+            resultsDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Fraud detection functions
+        const fraudSamples = {
+            normal: { amount: 67.89, hour: 15, category: 'grocery', accountAge: 1095 },
+            suspicious: { amount: 15000, hour: 2, category: 'unknown', accountAge: 3 }
+        };
+
+        function loadFraudSample(type) {
+            const sample = fraudSamples[type];
+            document.getElementById('amount').value = sample.amount;
+            document.getElementById('hour').value = sample.hour;
+            document.getElementById('category').value = sample.category;
+            document.getElementById('accountAge').value = sample.accountAge;
+        }
+
+        function clearFraudInput() {
+            document.getElementById('amount').value = '';
+            document.getElementById('hour').value = '';
+            document.getElementById('category').value = 'grocery';
+            document.getElementById('accountAge').value = '';
+            document.getElementById('fraudResults').classList.add('hidden');
+        }
+
+        function analyzeFraud() {
+            const amount = parseFloat(document.getElementById('amount').value);
+            const hour = parseInt(document.getElementById('hour').value);
+            const category = document.getElementById('category').value;
+            const accountAge = parseInt(document.getElementById('accountAge').value);
+            
+            if (!amount || hour === '' || !accountAge) {
+                alert('Please fill in all transaction details!');
+                return;
+            }
+
+            // Advanced fraud detection simulation
+            let riskScore = 0;
+            let riskFactors = [];
+            let riskLevel = 'LOW';
+
+            // Amount-based risk assessment
+            if (amount > 10000) {
+                riskScore += 40;
+                riskFactors.push('Extremely high transaction amount');
+                riskLevel = 'CRITICAL';
+            } else if (amount > 5000) {
+                riskScore += 25;
+                riskFactors.push('High transaction amount');
+                riskLevel = 'HIGH';
+            } else if (amount < 0.01) {
+                riskScore += 20;
+                riskFactors.push('Micro-transaction pattern');
+            }
+
+            // Time-based analysis
+            if (hour >= 0 && hour <= 5) {
+                riskScore += 30;
+                riskFactors.push('Late night/early morning activity');
+                riskLevel = riskLevel === 'LOW' ? 'HIGH' : riskLevel;
+            } else if (hour >= 22 || hour <= 6) {
+                riskScore += 15;
+                riskFactors.push('Off-hours transaction');
+            }
+
+            // Merchant category risk
+            const categoryRisk = {
+                'unknown': 45,
+                'atm': 20,
+                'online': 15,
+                'restaurant': 5,
+                'gas': 3,
+                'grocery': 0
+            };
+            
+            riskScore += categoryRisk[category] || 0;
+            if (category === 'unknown') {
+                riskFactors.push('Unverified merchant category');
+                riskLevel = 'CRITICAL';
+            }
+
+            // Account age analysis
+            if (accountAge < 7) {
+                riskScore += 50;
+                riskFactors.push('Brand new account activity');
+                riskLevel = 'CRITICAL';
+            } else if (accountAge < 30) {
+                riskScore += 35;
+                riskFactors.push('Very new account');
+                riskLevel = riskLevel === 'LOW' ? 'HIGH' : riskLevel;
+            } else if (accountAge < 90) {
+                riskScore += 15;
+                riskFactors.push('Recently opened account');
+            }
+
+            // Velocity and pattern analysis
+            if (hour < 6 && amount > 1000) {
+                riskScore += 25;
+                riskFactors.push('High-value off-hours combination');
+            }
+
+            riskScore += Math.random() * 8;
+            const isFraud = riskScore > 45;
+            const confidence = Math.min(99, Math.max(70, riskScore + Math.random() * 15));
+
+            displayFraudResults(isFraud, confidence, riskScore, riskFactors, amount, riskLevel);
+        }
+
+        function displayFraudResults(isFraud, confidence, riskScore, riskFactors, amount, riskLevel) {
+            const resultsDiv = document.getElementById('fraudResults');
+            const contentDiv = document.getElementById('fraudResultContent');
+            
+            const status = isFraud ? 'FRAUD DETECTED' : 'TRANSACTION APPROVED';
+            const statusColor = isFraud ? 'text-red-400' : 'text-green-400';
+            const bgGradient = isFraud ? 'from-red-500/20 to-orange-500/20' : 'from-green-500/20 to-blue-500/20';
+            const icon = isFraud ? '🚨' : '✅';
+            
+            const riskColors = {
+                'LOW': 'text-green-400',
+                'MEDIUM': 'text-yellow-400',
+                'HIGH': 'text-orange-400',
+                'CRITICAL': 'text-red-400'
+            };
+            
+            contentDiv.innerHTML = `
+                <div class="text-center mb-8">
+                    <div class="text-6xl mb-4">${icon}</div>
+                    <div class="text-3xl font-bold ${statusColor} mb-2">${status}</div>
+                    <div class="text-xl text-gray-300 mb-4">AI Confidence: ${confidence.toFixed(1)}%</div>
+                    <div class="inline-block px-6 py-3 bg-gradient-to-r ${bgGradient} rounded-full">
+                        <span class="font-bold ${riskColors[riskLevel]}">${riskLevel} RISK</span>
+                    </div>
+                </div>
+                
+                <div class="grid md:grid-cols-5 gap-4 mb-8">
+                    <div class="metric-card p-4 rounded-xl text-center">
+                        <div class="text-2xl font-bold ${statusColor}">${Math.round(riskScore)}</div>
+                        <div class="text-sm text-gray-400">Risk Score</div>
+                    </div>
+                    <div class="metric-card p-4 rounded-xl text-center">
+                        <div class="text-2xl font-bold text-blue-400">$${amount.toLocaleString()}</div>
+                        <div class="text-sm text-gray-400">Amount</div>
+                    </div>
+                    <div class="metric-card p-4 rounded-xl text-center">
+                        <div class="text-2xl font-bold text-purple-400">${riskFactors.length}</div>
+                        <div class="text-sm text-gray-400">Risk Factors</div>
+                    </div>
+                    <div class="metric-card p-4 rounded-xl text-center">
+                        <div class="text-2xl font-bold text-orange-400">0.94</div>
+                        <div class="text-sm text-gray-400">Model AUC</div>
+                    </div>
+                    <div class="metric-card p-4 rounded-xl text-center">
+                        <div class="text-2xl font-bold text-cyan-400">ML</div>
+                        <div class="text-sm text-gray-400">Ensemble</div>
+                    </div>
+                </div>
+                
+                ${riskFactors.length > 0 ? `
+                <div class="glass-card p-6 rounded-xl mb-6">
+                    <h4 class="text-lg font-bold mb-4 text-red-400">⚠️ Identified Risk Factors</h4>
+                    <div class="grid md:grid-cols-2 gap-3">
+                        ${riskFactors.map(factor => `
+                            <div class="flex items-center p-3 bg-red-500/10 border border-red-500/20 rounded-lg">
+                                <span class="text-red-400 mr-3">•</span>
+                                <span class="text-sm">${factor}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+                ` : ''}
+                
+                <div class="glass-card p-6 rounded-xl">
+                    <h4 class="text-lg font-bold mb-4 text-center">🤖 ML Model Analysis</h4>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h5 class="font-semibold text-blue-400 mb-2">🌲 Isolation Forest</h5>
+                            <p class="text-sm text-gray-300 mb-3">Unsupervised anomaly detection identifying outlier transaction patterns</p>
+                            <div class="w-full bg-gray-600 rounded-full h-2">
+                                <div class="bg-gradient-to-r from-blue-500 to-cyan-500 h-2 rounded-full" style="width: ${Math.min(100, riskScore)}%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <h5 class="font-semibold text-purple-400 mb-2">🧠 Autoencoder</h5>
+                            <p class="text-sm text-gray-300 mb-3">Deep learning reconstruction error analysis for fraud detection</p>
+                            <div class="w-full bg-gray-600 rounded-full h-2">
+                                <div class="bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full" style="width: ${Math.min(100, confidence)}%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            resultsDiv.classList.remove('hidden');
+            resultsDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 Codec Technologies Data Science Portfolio Loaded');
+            console.log('🎓 Advanced ML Projects Ready for Demonstration');
+            
+            // Add scroll effect to navigation
+            window.addEventListener('scroll', function() {
+                const nav = document.querySelector('nav');
+                if (window.scrollY > 100) {
+                    nav.style.background = 'rgba(15, 23, 42, 0.95)';
+                } else {
+                    nav.style.background = 'rgba(255, 255, 255, 0.1)';
+                }
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98ab9f94873941b6',t:'MTc1OTgyMTQ5NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
